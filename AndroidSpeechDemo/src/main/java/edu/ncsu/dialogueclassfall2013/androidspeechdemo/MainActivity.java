@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -20,12 +21,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements TextToSpeech.OnInitListener{
 
     public final static String EXTRA_MESSAGE = "edu.ncsu.dialogueclassfall2013.androidspeechdemo.MESSAGE";
 
     private static final int VOICE_RECOGNITION_REQUEST_CODE = 1001;
+    private TextToSpeech tts;
 
     public void checkVoiceRecognition() {
         // Check if voice recognition is present
@@ -68,6 +71,27 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    public void speak(View view) {
+        if (tts!=null) {
+            EditText editText = (EditText) findViewById(R.id.edit_message);
+            String text = editText.getText().toString();
+            if (text!=null) {
+                if (!tts.isSpeaking()) {
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        }
+    }
+
+    public void onInit(int code) {
+        if (code==TextToSpeech.SUCCESS) {
+            tts.setLanguage(Locale.getDefault());
+        } else {
+            tts = null;
+            showToastMessage("Failed to initialize TTS engine.");
+        }
+    }
+
     /**
      * Helper method to show the toast message
      **/
@@ -87,6 +111,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         checkVoiceRecognition();
+        tts = new TextToSpeech(this, this);
     }
 
 

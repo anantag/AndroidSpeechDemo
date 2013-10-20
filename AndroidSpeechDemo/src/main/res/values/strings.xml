@@ -4,6 +4,7 @@
     <string name="app_name">Android Speech Demo</string>
     <string name="action_settings">Settings</string>
     <string name="edit_message">Enter words to be spoken</string>
-    <string name="button_listen">Listen</string>
+    <string name="listen_button">Listen</string>
+    <string name="speak_button">Speak</string>
 
 </resources>

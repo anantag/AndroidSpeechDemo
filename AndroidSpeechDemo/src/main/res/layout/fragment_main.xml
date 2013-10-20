@@ -19,7 +19,13 @@
     <Button android:id="@+id/listen_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_listen"
+        android:text="@string/listen_button"
         android:onClick="listen" />
+
+    <Button android:id="@+id/speak_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speak_button"
+        android:onClick="speak" />
 
 </LinearLayout>
