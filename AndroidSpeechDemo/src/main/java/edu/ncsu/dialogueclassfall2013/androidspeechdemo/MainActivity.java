@@ -25,8 +25,6 @@ import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity implements TextToSpeech.OnInitListener{
 
-    public final static String EXTRA_MESSAGE = "edu.ncsu.dialogueclassfall2013.androidspeechdemo.MESSAGE";
-
     private static final int VOICE_RECOGNITION_REQUEST_CODE = 1001;
     private TextToSpeech tts;
 
